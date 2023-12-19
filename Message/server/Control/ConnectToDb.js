@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 
 
-const url = "mongodb+srv://denisadmin:00000000Tri@cluster0.nmebfc9.mongodb.net/"
+const url = "mongodb+srv://denisadmin:00000000tri@cluster0.nmebfc9.mongodb.net/"
 const Client = new MongoClient(url)
 
 export const GetuserByUsername = async  (username)=>{
@@ -12,9 +12,8 @@ export const GetuserByUsername = async  (username)=>{
         const data = await collection.findOne({username:username})
         console.log(data);
         Client.close()
-        
         return data
     } catch (error) {
-        console.log(data)
+        console.log(error)
     }
 }   
