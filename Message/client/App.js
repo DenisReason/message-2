@@ -1,34 +1,22 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import axios from 'axios';
-import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { handleLogin } from './Control/login.js';
 
 
-const url = 'https://message-denis-b604c8e87239.herokuapp.com/login'
-const url2 = "http://localhost:3000/login"
-const handleLogin = async (url,data) => {
-  await axios.post(url,data)
-    .then(Response => {
-      console.log(Response.data);
-    }).catch(err => {
-      console.log(err);
-    })
-}
+
+
 const Login = () => {
   const [username, setusername] = useState("")
   const [password, setpassword] = useState("")
 
-  useEffect(() => {
-
-  })
 
   return (
     <View style={styles.container}>
       <TextInput placeholder='Username' style={styles.input} onChangeText={setusername}></TextInput>
       <TextInput placeholder='Password' style={styles.input} onChangeText={setpassword}></TextInput>
-      <Button title='Login' onPress={()=>{handleLogin(url2,{username:username})}}></Button>
+      <Button title='Login' onPress={async()=>{await handleLogin({username:username,password:password})}}></Button>
     </View>
   )
 }
